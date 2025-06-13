@@ -1,0 +1,1 @@
+Add : add a loading screen in instaMojo component
