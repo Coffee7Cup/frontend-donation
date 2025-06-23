@@ -61,7 +61,11 @@ function UploadDonorDetails() {
   };
 
   const handleImageChange = (e) => {
-    setForm((prev) => ({ ...prev, image: e.target.files[0] }));
+    const file = e.target.files[0];
+    if (file) {
+      setForm((prev) => ({ ...prev, image: file }));
+      setFileName(file.name); // ✅ Update file name here
+    }
   };
 
   const handleSubmit = async (e) => {

@@ -8,6 +8,7 @@ const RazorpayPaymentForm = forwardRef((props, ref) => {
     email: "",
     phone: "",
     amount: "",
+    password: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -42,7 +43,8 @@ const RazorpayPaymentForm = forwardRef((props, ref) => {
           email: formData.email,
           phone: formData.phone,
           amount: formData.amount,
-        }
+          password: formData.password,
+        },
       );
 
       const { order, razorpayKey } = res.data;
@@ -64,7 +66,7 @@ const RazorpayPaymentForm = forwardRef((props, ref) => {
                 name: formData.name,
                 phone: formData.phone,
                 amount: formData.amount,
-              }
+              },
             );
 
             if (verifyRes.data.success) {
@@ -87,25 +89,25 @@ const RazorpayPaymentForm = forwardRef((props, ref) => {
           color: "#000000",
         },
         modal: {
-         ondismiss: async function () {
-          console.log("Payment popup closed by user");
+          ondismiss: async function() {
+            console.log("Payment popup closed by user");
 
-          const order_id = localStorage.getItem("cancel_order_id");
-          if (!order_id) return;
+            const order_id = localStorage.getItem("cancel_order_id");
+            if (!order_id) return;
 
-          try {
-            await axios.post("http://localhost:8080/api/v1/user/cancel", {
-            order_id,
-          });
+            try {
+              await axios.post("http://localhost:8080/api/v1/user/cancel", {
+                order_id,
+              });
 
-          alert("You cancelled the payment. Payment record deleted.");
-          } catch (err) {
-            console.error("Failed to delete payment:", err);
-            alert("Payment cancellation failed to sync.");
-          } finally {
-            localStorage.removeItem("cancel_order_id");
-          }
-        },
+              alert("You cancelled the payment. Payment record deleted.");
+            } catch (err) {
+              console.error("Failed to delete payment:", err);
+              alert("Payment cancellation failed to sync.");
+            } finally {
+              localStorage.removeItem("cancel_order_id");
+            }
+          },
         },
       };
 
@@ -162,12 +164,20 @@ const RazorpayPaymentForm = forwardRef((props, ref) => {
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        <input
+          type="password"
+          name="password"
+          required
+          placeholder="Enter your password"
+          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onChange={handleChange}
+          value={formData.password}
+        />
         <button
           type="submit"
           disabled={loading}
-          className={`w-full bg-black text-white py-2 rounded-md transition duration-200 ${
-            loading ? "opacity-50 cursor-not-allowed" : "hover:bg-black/80"
-          }`}
+          className={`w-full bg-black text-white py-2 rounded-md transition duration-200 ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-black/80"
+            }`}
         >
           {loading ? (
             <>
@@ -189,4 +199,3 @@ const RazorpayPaymentForm = forwardRef((props, ref) => {
 });
 
 export default RazorpayPaymentForm;
-
