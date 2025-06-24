@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss()
   ], 
-   base: '/donation-project-frontend/'
+   base: '/frontend-donation/'
 })
