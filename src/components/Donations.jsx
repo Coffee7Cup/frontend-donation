@@ -79,13 +79,13 @@ const Donations = forwardRef((props, ref) => {
               {selectedDonation.title}
             </h2>
             <p>{selectedDonation.description}</p>
-            <p className="text-2xl">Please contact : 999999999</p>
+            <p className="text-2xl">Please contact : 9440655466</p>
           </div>
         </div>
       )}
 
       <div ref={ref} className="p-4 md:p-20 mx-10 ">
-        <h1 className="text-3xl md:text-6xl font-bold mb-10 text-center">
+        <h1 className="text-3xl md:text-6xl font-bold mb-10 text-center p-4 bg-orange-100 rounded-lg border-2 border-orange-400 text-orange-500">
           Donations
         </h1>
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

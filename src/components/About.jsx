@@ -10,7 +10,7 @@ const About = forwardRef((props, ref) => {
   }, []);
 
   return (
-    <div ref={ref} className="p-4 md:p-10 mb-[-100px]">
+    <div ref={ref} className="p-4 md:p-10 md:mb-[-100px]">
       <div className="flex flex-col md:flex-row items-center justify-between min-h-screen px-2 md:px-8 sm:mt-[50px] md:mt-[0px]">
         <motion.div
           className="flex-1 p-4 md:p-10"
@@ -32,7 +32,7 @@ const About = forwardRef((props, ref) => {
           transition={{ duration: 1, delay: 0.2 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <h1 className="text-3xl md:text-6xl font-bold mb-4 text-center md:text-left">
+          <h1 className="text-3xl md:text-6xl font-bold mb-4 text-center md:text-left p-4 bg-orange-100 rounded-lg border-2 border-orange-400 text-orange-500">
             About Us
           </h1>
           <p className="text-base md:text-2xl text-gray-700 text-center md:text-left">

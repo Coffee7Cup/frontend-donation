@@ -1,26 +1,20 @@
-import {  useRef } from 'react'
+import { useRef } from "react";
 
-import './App.css'
-import Home from './components/Home'
-import Navbar from './components/Navbar'
-import About from './components/About'
-import Donations from './components/Donations'
-import Footer from './components/Footer'
-import Donors from './components/Donors'
-import UploadDonorDetails from './components/UploadDonorDetails'
-import RazorpayPaymentForm from './components/RazorpayPaymentForm'
-import EnterDetailsForm from './components/EnterDetailsForm'
-import AlreadyDonatedPrompt from './components/AlreadyDonatedPrompt'
-import GetNewSession from './components/GetNewSession'
+import "./App.css";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+import About from "./components/About";
+import Donations from "./components/Donations";
+import Footer from "./components/Footer";
+import UpiPayment from "./components/UpiPayment";
 
 function App() {
-
-  const path  = window.location.pathname;
 
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
   const donationsRef = useRef(null);
   const donationFormRef = useRef(null);
+  const locationRef = useRef(null);
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
@@ -28,41 +22,28 @@ function App() {
 
   let componentRender = null;
 
-  const mainPage = 
+  const mainPage = (
     <>
-      <Navbar onNavigate={scrollToSection} homeRef={homeRef} aboutRef={aboutRef} donationsRef={donationsRef} donationFormRef={donationFormRef}/>
-      <Home ref={homeRef}/>
-      <About ref={aboutRef}/>
-      <Donations ref={donationsRef}/>
-      <RazorpayPaymentForm ref={donationFormRef}/>
-      <AlreadyDonatedPrompt/>
-      <GetNewSession/>
-      <Footer />
+      <Navbar
+        onNavigate={scrollToSection}
+        homeRef={homeRef}
+        aboutRef={aboutRef}
+        donationsRef={donationsRef}
+        donationFormRef={donationFormRef}
+        locationRef={locationRef}
+      />
+
+      <Home ref={homeRef} />
+      <About ref={aboutRef} />
+      <Donations ref={donationsRef} />
+      <UpiPayment ref={donationFormRef} />
+      <Footer ref={locationRef} />
     </>
+  );
 
-  switch (path) {
-    case '/donation-project-frontend/':
-      componentRender = mainPage;
-      break;
-    case '/donation-project-frontend/donors' :
-      componentRender = <Donors />;
-      break;
-    case "/donation-project-frontend/upload" :
-      componentRender = <UploadDonorDetails/>
-      break;
-    case "/donation-project-frontend/enter-details" :
-      componentRender = <EnterDetailsForm/>
-      break;
-    default:
-      componentRender = mainPage;
-      break;
-  }
+  componentRender = mainPage;
 
-  return (
-    <div className="App">
-      {componentRender}
-    </div>
-  )
+  return <div className="App">{componentRender}</div>;
 }
 
-export default App
+export default App;
