@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import LOGO from "../assets/logo.png"
+import LOGO from "../assets/logo.png";
 
 const Navbar = ({
   onNavigate,
@@ -15,15 +15,26 @@ const Navbar = ({
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleClick = (ref) => {
-    onNavigate(ref);
-    setIsOpen(false); // close mobile menu after click
+    onNavigate(ref)
+  }
+
+  const handleClickMobile = (ref) => {
+    setIsOpen(false); // close menu
+
+    setTimeout(() => {
+      onNavigate(ref);
+    }, 350); // wait for animation to finish
   };
 
   return (
     <nav className="bg-white shadow-md text-xl fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
         <div className="flex justify-between items-center h-16">
-          <img src={LOGO} alt="logo" style={{height:"65px",width:"65px"}}/>
+          <img
+            src={LOGO}
+            alt="logo"
+            style={{ height: "65px", width: "65px" }}
+          />
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
@@ -87,31 +98,31 @@ const Navbar = ({
             className="md:hidden overflow-hidden px-4 pb-4 space-y-2 flex flex-col"
           >
             <button
-              onClick={() => handleClick(homeRef)}
+              onClick={() => handleClickMobile(homeRef)}
               className="text-gray-700 hover:text-orange-600 font-medium"
             >
               Home
             </button>
             <button
-              onClick={() => handleClick(aboutRef)}
+              onClick={() => handleClickMobile(aboutRef)}
               className="text-gray-700 hover:text-orange-600 font-medium"
             >
               About
             </button>
             <button
-              onClick={() => handleClick(donationsRef)}
+              onClick={() => handleClickMobile(donationsRef)}
               className="text-gray-700 hover:text-orange-600 font-medium"
             >
               Donations
             </button>
             <button
-              onClick={() => handleClick(donationFormRef)}
+              onClick={() => handleClickMobile(donationFormRef)}
               className="text-gray-700 hover:text-orange-600 font-medium"
             >
               Donate Now
             </button>
             <button
-              onClick={() => handleClick(locationRef)}
+              onClick={() => handleClickMobile(locationRef)}
               className="text-gray-700 hover:text-orange-600 font-medium"
             >
               Find Us

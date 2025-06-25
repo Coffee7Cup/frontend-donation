@@ -9,7 +9,6 @@ import Footer from "./components/Footer";
 import UpiPayment from "./components/UpiPayment";
 
 function App() {
-
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
   const donationsRef = useRef(null);
@@ -17,7 +16,16 @@ function App() {
   const locationRef = useRef(null);
 
   const scrollToSection = (ref) => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
+    if (ref?.current) {
+      console.log("Navigating to:", ref?.current);
+      const offset = 80; // Adjust this to match your navbar height
+      const top = ref.current.getBoundingClientRect().top + window.scrollY - offset;
+
+      window.scrollTo({
+        top,
+        behavior: "smooth",
+      });
+    }
   };
 
   let componentRender = null;

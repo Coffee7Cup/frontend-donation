@@ -11,7 +11,7 @@ const Donations = forwardRef((props, ref) => {
   const [selectedDonation, setSelectedDonation] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const Card = React.memo(({ title, description, image, index}) => {
+  const Card = React.memo(({ title, description, image, index }) => {
     return (
       <motion.div
         className="cursor-pointer bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 flex flex-col justify-center items-center"
@@ -30,36 +30,43 @@ const Donations = forwardRef((props, ref) => {
       </motion.div>
     );
   });
+
   const donations = [
     {
       title: "Books for Children",
       description: "Donate books to children.",
       image: book,
+      more: "Books empower children by improving literacy and providing access to knowledge they deserve.",
     },
     {
       title: "Clothing Drive",
       description: "Provide clothing for those in need.",
       image: clothing,
+      more: "Donated clothes bring comfort, and warmth to children.",
     },
     {
       title: "Gadgets for Education",
       description: "Support students with essential gadgets.",
       image: gadgets,
+      more: "Your donation helps bridge the digital divide, enabling students to attend classes, complete assignments, and stay connected.",
     },
     {
       title: "Support",
-      description: "donate monthly",
+      description: "Donate monthly.",
       image: salary,
+      more: "Monthly donations provide reliable, sustained support to keep essential programs running and help us plan long-term impact.",
     },
     {
-      title: "Celeberate birthdays",
+      title: "Celebrate Birthdays",
       description: "Celebrate birthdays with a cause.",
       image: bday,
+      more: "Celebrate your birthday with by sponsoring food to children, fund learning, or sponsor a joyful day.",
     },
     {
-      title: "Celeberate with us",
-      description: "celebrate any occasion with us.",
+      title: "Celebrate with Us",
+      description: "Celebrate any occasion with us.",
       image: celeb,
+      more: "Mark your special moments by supporting a cause,whether it's a festival, anniversary, or achievement.",
     },
     // Add more donation items as needed
   ];
@@ -79,7 +86,12 @@ const Donations = forwardRef((props, ref) => {
               {selectedDonation.title}
             </h2>
             <p>{selectedDonation.description}</p>
-            <p className="text-2xl">Please contact : 9440655466</p>
+            <p className="text-gray-600 py-4">
+             {selectedDonation.more}
+            </p>
+            <p className="text-2xl text-green-600">
+              Please contact : 9440655466
+            </p>
           </div>
         </div>
       )}
@@ -90,17 +102,14 @@ const Donations = forwardRef((props, ref) => {
         </h1>
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {donations.map((donation, index) => (
-            <div 
+            <div
               key={index}
               onClick={() => {
                 setSelectedDonation(donation);
                 setIsPopupOpen(true);
               }}
             >
-            <Card
-              {...donation}
-              index={index}
-            />
+              <Card {...donation} index={index} />
             </div>
           ))}
         </div>
