@@ -59,7 +59,7 @@ const UpiPayment = forwardRef((_, ref) => {
           Your Donations are Much Appreciated 💚
         </h2>
         <div className="flex items-center gap-3 text-yellow-700 bg-yellow-50 border border-yellow-300 rounded-md p-4 m-2">
-          <img src={CAUTION} alt="Caution" className="w-8 h-8" />
+           <img src={CAUTION} alt="Caution" className="w-8 h-8" />
           <span>Please contact us if there's any inconvenience.</span>
         </div>
         <div className="flex items-center gap-3 text-pink-700 bg-pink-50 border border-pink-300 rounded-md p-4 m-2">
