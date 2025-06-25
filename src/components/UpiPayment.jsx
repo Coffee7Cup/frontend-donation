@@ -1,8 +1,20 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import QRCODE from "../assets/qr-code.png";
 import CAUTION from "../assets/caution.png";
+import COPY from "../assets/copy-to-clipboard.png";
+import CHECK from "../assets/check.png";
 
 const UpiPayment = forwardRef((_, ref) => {
+  const [isCopyed, setIsCopyed] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText("9440655466");
+    setIsCopyed(true);
+    setTimeout(() => {
+      setIsCopyed(false);
+    }, 1000);
+  };
+
   return (
     <div
       ref={ref}
@@ -19,7 +31,24 @@ const UpiPayment = forwardRef((_, ref) => {
           --- Donate through QR or use the below phone number ---
         </div>
         <div className="bg-purple-200 text-center text-xl text-gray-800 font-semibold rounded-lg border-2 border-purple-300 px-6 py-4 w-full">
-          <div className="mb-1">9494791900</div>
+          <div className="mb-1 justify-center flex items-center gap-2">
+            <div>9494791900</div>
+            <button onClick={() => handleCopy()}>
+              {isCopyed ? (
+                <img
+                  src={CHECK}
+                  alt="check"
+                  style={{ height: "15px", width: "15px" }}
+                />
+              ) : (
+                <img
+                  src={COPY}
+                  alt="copy"
+                  style={{ height: "15px", width: "15px" }}
+                />
+              )}
+            </button>
+          </div>
           <div>PhonePy | Paytm | and others</div>
         </div>
       </div>
@@ -34,7 +63,10 @@ const UpiPayment = forwardRef((_, ref) => {
           <span>Please contact us if there's any inconvenience.</span>
         </div>
         <div className="flex items-center gap-3 text-pink-700 bg-pink-50 border border-pink-300 rounded-md p-4 m-2">
-          <span>Please give us a quick call to confirm your donation and share your details — we'd love to thank you personally!</span>
+          <span>
+            Please give us a quick call to confirm your donation and share your
+            details — we'd love to thank you personally!
+          </span>
         </div>
       </div>
     </div>

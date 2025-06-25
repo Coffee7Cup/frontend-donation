@@ -17,7 +17,6 @@ function App() {
 
   const scrollToSection = (ref) => {
     if (ref?.current) {
-      console.log("Navigating to:", ref?.current);
       const offset = 80; // Adjust this to match your navbar height
       const top = ref.current.getBoundingClientRect().top + window.scrollY - offset;
 

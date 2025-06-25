@@ -10,6 +10,15 @@ import bday from "../assets/projectImgs/bday.jpeg";
 const Donations = forwardRef((props, ref) => {
   const [selectedDonation, setSelectedDonation] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isCopyed, setIsCopyed] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText("9440655466");
+    setIsCopyed(true);
+    setTimeout(() => {
+      setIsCopyed(false);
+    }, 2000);
+  }
 
   const Card = React.memo(({ title, description, image, index }) => {
     return (
